@@ -60,7 +60,18 @@ func _on_motion(event: InputEventMouseMotion) -> void:
 	label.text = "Motion from %s: rel=%s" % [event.device, event.relative]
 
 func _on_button(event: InputEventMouseButton) -> void:
-	InputManager._debugMouse(event)
+	
+	#Send event to input manager
+	match event.device:
+		1:
+			InputManager.leftMouseInputEvent = event
+		2:
+			InputManager.rightMouseInputEvent = event
+		3:
+			InputManager.middleMouseInputEvent = event
+		_:
+			pass
+	
 	label.text = "Button %s. from %s (pressed=%s)" % [event.button_index, event.device, event.pressed]
 
 func _on_device_connected(device_id: int, info: Dictionary) -> void:

@@ -1,5 +1,7 @@
 extends Node
 
+#region Initialise
+
 @onready var player: Node3D = $"../Room1/Player"
 
 var backwards = false
@@ -8,48 +10,81 @@ var turnLeft = false
 var turnRight = false
 var speedyTurn = false
 
+var leftMouse = 0
+var rightMouse = 0
+var middleMouse = 0
 
-func _ready() -> void:
-	pass # Replace with function body.
+var leftMouseInputEvent: InputEventMouseButton
+var rightMouseInputEvent: InputEventMouseButton
+var middleMouseInputEvent: InputEventMouseButton
 
+#endregion
+
+#region Update
 func _process(_delta: float) -> void:
-	_resetBools()
+	
+	if (leftMouseInputEvent != null): 
+		_mouseInputSorter(leftMouseInputEvent)
+		leftMouseInputEvent = null
+	if (rightMouseInputEvent != null): 
+		_mouseInputSorter(rightMouseInputEvent)
+		rightMouseInputEvent = null
+	if (middleMouseInputEvent != null): 
+		_mouseInputSorter(middleMouseInputEvent)
+		middleMouseInputEvent = null
+	
 	_processInput()
 	_movement()
+	_resetVars()
+#endregion
 
 #region Movement/Input
-func _resetBools() -> void:
-	backwards = false
-	forwards = false
-	turnLeft = false
-	turnRight = false
-	speedyTurn = false
+func _mouseInputSorter(event: InputEventMouseButton) -> void:
 
-func _movement() -> void:
-	var playerBody: Node = player.get_child(0)
-	var velocity = Vector3(0,0,0)
-	var currentRotation = playerBody.rotation_degrees.y
-	
-	if backwards:
-		velocity.z += 0.1
-	if forwards:
-		velocity.z -= 0.1
-	
-	velocity = velocity.rotated(Vector3.UP, deg_to_rad(currentRotation))
+	print(str(event.button_index) + " || " + str(event.device))
+	match event.device:
+		1: # LEFT INPUT
+			if (event.button_index == 4): leftMouse = 1
+			if (event.button_index == 5): leftMouse = -1
+		2: # RIGHT INPUT
+			if (event.button_index == 4): rightMouse = 1
+			if (event.button_index == 5): rightMouse = -1
+		3: # CENTRE INPUT
+			pass
+		_: # IGNORE OTHER MICE
+			pass
 
+func _leftFootInput() -> int:
+	var leftInputNum = 0
+	# REPLACE HERE WITH MOUSE INPUTS
+	if Input.is_action_pressed("LeftFootForward"):
+		leftInputNum +=1
+	if Input.is_action_pressed("LeftFootBack"):
+		leftInputNum -=1
+	#
 	
-	playerBody.move_and_collide(velocity)
+	clampi(leftInputNum,-1,1)
 	
-	var rotationSpeed = 0.1
-	if speedyTurn: rotationSpeed = rotationSpeed*2
-	if turnLeft:
-		playerBody.rotate_y(1*rotationSpeed)
-	if turnRight:
-		playerBody.rotate_y(-1*rotationSpeed)
+	return leftInputNum
+func _rightFootInput() -> int:
+	var rightInputNum = 0
+	
+	# REPLACE HERE WITH MOUSE INPUTS
+	if Input.is_action_pressed("RightFootForward"):
+		rightInputNum += 1
+	if Input.is_action_pressed("RightFootBack"):
+		rightInputNum -= 1
+	#
+	
+	clampi(rightInputNum,-1,1)
+	
+	return rightInputNum
 
 func _processInput() -> void:
-	var leftInput = _leftFootInput()
-	var rightInput = _rightFootInput()
+	var leftInput = leftMouse #_leftFootInput()
+	var rightInput = rightMouse #_rightFootInput()
+	if(_leftFootInput() != 0): leftInput = _leftFootInput()
+	if(_rightFootInput() != 0): rightInput = _rightFootInput()
 	var leftSign = signi(leftInput)
 	var rightSign = signi(rightInput)
 	
@@ -87,49 +122,36 @@ func _processInput() -> void:
 	#  Possible combinations:
 	#  ||(-1,0) (-1,1)|| - ||(0,1) (0,-1)|| - ||(1,0) (1,-1)||
 	#  --
+func _movement() -> void:
+	var playerBody: Node = player.get_child(0)
+	var velocity = Vector3(0,0,0)
+	var currentRotation = playerBody.rotation_degrees.y
+	
+	if backwards:
+		velocity.z += 0.1
+	if forwards:
+		velocity.z -= 0.1
+	
+	velocity = velocity.rotated(Vector3.UP, deg_to_rad(currentRotation))
 
-func _mouseInputSorter(event: InputEventMouseButton) -> void:
-	var leftMouseButton = 0
-	var rightMouseButton = 0
-	var centreMouseButton = 0
-	print(str(event.button_index) + " || " + str(event.device))
-	match event.device:
-		1: # LEFT INPUT
-			leftMouseButton = event.button_index 
-			_leftFootInput(leftMouseButton)
-		2: # RIGHT INPUT
-			rightMouseButton = event.button_index
-			_rightFootInput(rightMouseButton)
-		3: # CENTRE INPUT
-			centreMouseButton = event.button_index
-		_: # IGNORE OTHER MICE
-			pass
 	
+	playerBody.move_and_collide(velocity)
+	
+	var rotationSpeed = 0.1
+	if speedyTurn: rotationSpeed = rotationSpeed*2
+	if turnLeft:
+		playerBody.rotate_y(1*rotationSpeed)
+	if turnRight:
+		playerBody.rotate_y(-1*rotationSpeed)
 
-func _leftFootInput(lmb: int) -> int:
-	var leftInputNum = 0
-	# REPLACE HERE WITH MOUSE INPUTS
-	if Input.is_action_pressed("LeftFootForward"):
-		leftInputNum +=1
-	if Input.is_action_pressed("LeftFootBack"):
-		leftInputNum -=1
-	#
-	
-	clampi(leftInputNum,-1,1)
-	
-	return leftInputNum
+func _resetVars() -> void:
+	leftMouse = 0
+	rightMouse = 0
+	middleMouse = 0
+	backwards = false
+	forwards = false
+	turnLeft = false
+	turnRight = false
+	speedyTurn = false
 
-func _rightFootInput(rmb: int) -> int:
-	var rightInputNum = 0
-	
-	# REPLACE HERE WITH MOUSE INPUTS
-	if Input.is_action_pressed("RightFootForward"):
-		rightInputNum += 1
-	if Input.is_action_pressed("RightFootBack"):
-		rightInputNum -= 1
-	#
-	
-	clampi(rightInputNum,-1,1)
-	
-	return rightInputNum
 #endregion
