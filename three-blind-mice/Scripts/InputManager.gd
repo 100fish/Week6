@@ -4,6 +4,10 @@ extends Node
 
 @onready var player: Node3D = $"../Room1/Player"
 
+var rotationSpeed: float = 1.0
+var movementSpeed: float = 1.0
+var speedyBoost: float = 1.5
+
 var backwards = false
 var forwards = false
 var turnLeft = false
@@ -128,21 +132,21 @@ func _movement() -> void:
 	var currentRotation = playerBody.rotation_degrees.y
 	
 	if backwards:
-		velocity.z += 0.1
+		velocity.z += 0.1 * movementSpeed
 	if forwards:
-		velocity.z -= 0.1
+		velocity.z -= 0.1 * movementSpeed
 	
 	velocity = velocity.rotated(Vector3.UP, deg_to_rad(currentRotation))
 
 	
 	playerBody.move_and_collide(velocity)
 	
-	var rotationSpeed = 0.1
-	if speedyTurn: rotationSpeed = rotationSpeed*2
+	var rotSpeed = 0.1 * rotationSpeed 
+	if speedyTurn: rotSpeed = rotSpeed*speedyBoost
 	if turnLeft:
-		playerBody.rotate_y(1*rotationSpeed)
+		playerBody.rotate_y(1*rotSpeed)
 	if turnRight:
-		playerBody.rotate_y(-1*rotationSpeed)
+		playerBody.rotate_y(-1*rotSpeed)
 
 func _resetVars() -> void:
 	leftMouse = 0
