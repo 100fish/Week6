@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://i3au8fij4dlw"]
+
+[ext_resource type="Script" uid="uid://cumflaq2kf1g2" path="res://Scripts/MainMeu.gd" id="1_nxvpl"]
+
+[sub_resource type="Gradient" id="Gradient_w371h"]
+offsets = PackedFloat32Array(0.05421687, 0.9096386, 1)
+colors = PackedColorArray(0.73333335, 0.7529412, 0.5764706, 1, 0.8215923, 0.42830142, 0.6843374, 1, 0.81960785, 0.4392157, 0.68235296, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dewlx"]
+gradient = SubResource("Gradient_w371h")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiqhs"]
+bg_color = Color(0.7411765, 0.4745098, 0.85882354, 0.627451)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="MainMenu" type="CanvasLayer" unique_id=422285200]
+script = ExtResource("1_nxvpl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647476313]
+position = Vector2(977.5, 534)
+scale = Vector2(31.015625, 17.3125)
+texture = SubResource("GradientTexture2D_dewlx")
+
+[node name="Menu" type="Control" parent="." unique_id=1452966409]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu" unique_id=1553435051]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.675
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="InnerBackground" type="Panel" parent="Menu/MarginContainer" unique_id=1694462243]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oiqhs")
+
+[node name="InnerContainer" type="VBoxContainer" parent="Menu/MarginContainer/InnerBackground" unique_id=2077939229]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control3" type="Control" parent="Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=816778555]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer" type="MarginContainer" parent="Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=1703309713]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Button" type="Button" parent="Menu/MarginContainer/InnerBackground/InnerContainer/ButtonContainer" unique_id=2031118019]
+layout_mode = 2
+text = "New Game
+"
+
+[node name="Control" type="Control" parent="Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=14322621]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer2" type="MarginContainer" parent="Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=1572252226]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Button" type="Button" parent="Menu/MarginContainer/InnerBackground/InnerContainer/ButtonContainer2" unique_id=1417628526]
+layout_mode = 2
+text = "New Game
+"
+
+[node name="Control2" type="Control" parent="Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=984628370]
+layout_mode = 2
+size_flags_vertical = 3

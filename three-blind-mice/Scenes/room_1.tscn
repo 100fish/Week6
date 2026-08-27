@@ -5,7 +5,7 @@
 
 [node name="Room1" type="Node3D" unique_id=987349417]
 
-[node name="Player" parent="." unique_id=970599062 instance=ExtResource("1_0gevy")]
+[node name="Player" parent="." unique_id=970599062 groups=["Player"] instance=ExtResource("1_0gevy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.74315, 0)
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=1654787423]

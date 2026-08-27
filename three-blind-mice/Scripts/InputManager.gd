@@ -2,7 +2,7 @@ extends Node
 
 #region Initialise
 
-@onready var player: Node3D = $"../Room1/Player"
+@onready var player: Node3D
 
 var rotationSpeed: float = 1.0
 var movementSpeed: float = 1.0
@@ -22,24 +22,27 @@ var leftMouseInputEvent: InputEventMouseButton
 var rightMouseInputEvent: InputEventMouseButton
 var middleMouseInputEvent: InputEventMouseButton
 
+var enabled: bool = false
+
 #endregion
 
 #region Update
 func _process(_delta: float) -> void:
+	if(enabled):
+		if (leftMouseInputEvent != null): 
+			_mouseInputSorter(leftMouseInputEvent)
+			leftMouseInputEvent = null
+		if (rightMouseInputEvent != null): 
+			_mouseInputSorter(rightMouseInputEvent)
+			rightMouseInputEvent = null
+		if (middleMouseInputEvent != null): 
+			_mouseInputSorter(middleMouseInputEvent)
+			middleMouseInputEvent = null
+		
+		_processInput()
+		_movement()
+		_resetVars()
 	
-	if (leftMouseInputEvent != null): 
-		_mouseInputSorter(leftMouseInputEvent)
-		leftMouseInputEvent = null
-	if (rightMouseInputEvent != null): 
-		_mouseInputSorter(rightMouseInputEvent)
-		rightMouseInputEvent = null
-	if (middleMouseInputEvent != null): 
-		_mouseInputSorter(middleMouseInputEvent)
-		middleMouseInputEvent = null
-	
-	_processInput()
-	_movement()
-	_resetVars()
 #endregion
 
 #region Movement/Input
@@ -47,13 +50,15 @@ func _mouseInputSorter(event: InputEventMouseButton) -> void:
 
 	print(str(event.button_index) + " || " + str(event.device))
 	match event.device:
-		1: # LEFT INPUT
+		2: # LEFT INPUT
 			if (event.button_index == 4): leftMouse = 1
 			if (event.button_index == 5): leftMouse = -1
-		2: # RIGHT INPUT
+		3: # RIGHT INPUT
 			if (event.button_index == 4): rightMouse = 1
 			if (event.button_index == 5): rightMouse = -1
-		3: # CENTRE INPUT
+		10: # CENTRE INPUT
+			if (event.button_index == 4): rightMouse = 1
+			if (event.button_index == 5): rightMouse = -1
 			pass
 		_: # IGNORE OTHER MICE
 			pass

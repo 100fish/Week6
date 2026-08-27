@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ThreeBlindMice"
-run/main_scene="res://Scenes/room_1.tscn"
+run/main_scene="uid://i3au8fij4dlw"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
@@ -20,12 +20,22 @@ InputManager="*uid://4cc15aiyfvcq"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/multi_mouse/plugin.cfg")
+
+[global_group]
+
+Player=""
+
+[gui]
+
+theme/custom="uid://cwpgx3si1017q"
 
 [input]
 

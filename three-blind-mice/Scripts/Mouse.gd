@@ -63,11 +63,11 @@ func _on_button(event: InputEventMouseButton) -> void:
 	
 	#Send event to input manager
 	match event.device:
-		1:
-			InputManager.leftMouseInputEvent = event
 		2:
-			InputManager.rightMouseInputEvent = event
+			InputManager.leftMouseInputEvent = event
 		3:
+			InputManager.rightMouseInputEvent = event
+		10:
 			InputManager.middleMouseInputEvent = event
 		_:
 			pass
