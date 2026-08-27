@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://i03jpbubee2x"]
+
+[ext_resource type="PackedScene" uid="uid://danmw1ahi5fbt" path="res://Scenes/PlayerMouse.tscn" id="1_0gevy"]
+[ext_resource type="PackedScene" uid="uid://ddq1iy0as6qsj" path="res://Scenes/mouse_manager.tscn" id="2_m8co2"]
+
+[node name="Room1" type="Node3D" unique_id=987349417]
+
+[node name="Player" parent="." unique_id=970599062 instance=ExtResource("1_0gevy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.74315, 0)
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1654787423]
+transform = Transform3D(37.014496, 0, 0, 0, 1, 0, 0, 0, 31.941135, 0, -4.0111656, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1071338962]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.09, 28.59, 0.045)
+projection = 1
+size = 20.068
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1819734096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2801137, -0.96290743, -4.4159603)
+size = Vector3(12.538513, 4.895996, 1.4023438)
+
+[node name="MouseManager" parent="." unique_id=1808152093 instance=ExtResource("2_m8co2")]

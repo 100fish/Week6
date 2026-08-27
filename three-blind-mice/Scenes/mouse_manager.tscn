@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ddq1iy0as6qsj"]
+
+[ext_resource type="Script" uid="uid://vnkogwddrwit" path="res://Scripts/Mouse.gd" id="1_n0nni"]
+[ext_resource type="Script" uid="uid://ckrh0g1bvflyv" path="res://addons/multi_mouse/multi_mouse_manager.gd" id="2_b1tfb"]
+
+[node name="MouseManager" type="Node2D" unique_id=1808152093]
+script = ExtResource("1_n0nni")
+
+[node name="MultiMouse" type="Node" parent="." unique_id=1776039045]
+script = ExtResource("2_b1tfb")
+metadata/_custom_type_script = "uid://ckrh0g1bvflyv"

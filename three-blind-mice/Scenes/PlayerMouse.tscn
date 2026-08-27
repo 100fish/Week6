@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://danmw1ahi5fbt"]
+
+[ext_resource type="Texture2D" uid="uid://bw13tiuqrlwjg" path="res://Sprites/mousepic.png" id="1_6x8lg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2isgr"]
+size = Vector3(1, 1, 2.2833252)
+
+[node name="Player" type="Node3D" unique_id=970599062]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1054369436]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1552631810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34075928)
+shape = SubResource("BoxShape3D_2isgr")
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" unique_id=1723579650]
+transform = Transform3D(0.585, 0, 0, 0, -2.5571161e-08, 0.585, 0, -0.585, -2.5571161e-08, -0.04, 0, 0)
+texture = ExtResource("1_6x8lg")
