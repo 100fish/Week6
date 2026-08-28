@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="ThreeBlindMice"
-run/main_scene="uid://i3au8fij4dlw"
+run/main_scene="uid://bxjdtero2iebk"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
 InputManager="*uid://4cc15aiyfvcq"
+MenuManager="*uid://cumflaq2kf1g2"
 
 [display]
 

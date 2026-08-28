@@ -2,22 +2,80 @@
 
 [ext_resource type="PackedScene" uid="uid://danmw1ahi5fbt" path="res://Scenes/PlayerMouse.tscn" id="1_0gevy"]
 [ext_resource type="PackedScene" uid="uid://ddq1iy0as6qsj" path="res://Scenes/mouse_manager.tscn" id="2_m8co2"]
+[ext_resource type="PackedScene" uid="uid://phxiov16gg27" path="res://Scenes/Wall.tscn" id="3_isvj2"]
+[ext_resource type="PackedScene" uid="uid://cq152246qduu3" path="res://Scenes/Floor.tscn" id="4_uu0ng"]
+[ext_resource type="Script" uid="uid://buwbtx6n30yys" path="res://Scripts/cheese_manager.gd" id="5_uu0ng"]
+[ext_resource type="PackedScene" uid="uid://btyynsdo4lk2k" path="res://Scenes/cheese.tscn" id="6_gn78r"]
+
+[sub_resource type="Environment" id="Environment_oiqhs"]
+background_color = Color(0.58876, 0.5941122, 0.71358556, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.38597536, 0.5796825, 0.8222677, 1)
+glow_levels/1 = 21.15
+glow_levels/2 = 16.35
+glow_levels/3 = 18.05
+glow_levels/4 = 21.45
+glow_levels/5 = 31.1
+glow_levels/6 = 16.0
+glow_levels/7 = 16.0
 
 [node name="Room1" type="Node3D" unique_id=987349417]
 
 [node name="Player" parent="." unique_id=970599062 groups=["Player"] instance=ExtResource("1_0gevy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.74315, 0)
-
-[node name="Floor" type="CSGBox3D" parent="." unique_id=1654787423]
-transform = Transform3D(37.014496, 0, 0, 0, 1, 0, 0, 0, 31.941135, 0, -4.0111656, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0005369, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1071338962]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.09, 28.59, 0.045)
 projection = 1
 size = 20.068
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1819734096]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2801137, -0.96290743, -4.4159603)
-size = Vector3(12.538513, 4.895996, 1.4023438)
-
 [node name="MouseManager" parent="." unique_id=1808152093 instance=ExtResource("2_m8co2")]
+
+[node name="Environment" type="Node3D" parent="." unique_id=566131419]
+
+[node name="Wall2" parent="Environment" unique_id=2084470805 instance=ExtResource("4_uu0ng")]
+transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, -0.9162688, 0)
+
+[node name="Wall" parent="Environment" unique_id=1353909997 instance=ExtResource("3_isvj2")]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 60, -30, 0, 0)
+
+[node name="Wall3" parent="Environment" unique_id=288335927 instance=ExtResource("3_isvj2")]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 60, 30, 0, 0)
+
+[node name="Wall4" parent="Environment" unique_id=1816264236 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-4.371139e-08, 0, -60, 0, 5, 0, 1, 0, -2.6226833e-06, 1.3113416e-06, 0, -30)
+
+[node name="Wall6" parent="Environment" unique_id=5619969 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-4.3711385e-08, 0, -30, 0, 5, 0, 1, 0, -1.3113417e-06, 1.3113416e-06, 0, -15)
+
+[node name="Wall7" parent="Environment" unique_id=683667120 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-4.3711385e-08, 0, -30, 0, 5, 0, 1, 0, -1.3113417e-06, 1.3113416e-06, 0, 15)
+
+[node name="Wall8" parent="Environment" unique_id=868991371 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-0.9999999, 0, 6.556709e-07, 0, 5, 0, -8.742276e-08, 0, -7.5, 8.000001, 0, 1.639177e-07)
+
+[node name="Wall10" parent="Environment" unique_id=1703781950 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-0.9999999, 0, 1.0490734e-06, 0, 5, 0, -8.742276e-08, 0, -12, 21, 0, 1.639177e-07)
+
+[node name="Wall11" parent="Environment" unique_id=1373026778 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-0.9999999, 0, 1.0490734e-06, 0, 5, 0, -8.742276e-08, 0, -12, -21, 0, 1.639177e-07)
+
+[node name="Wall9" parent="Environment" unique_id=602155325 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-0.9999999, 0, 6.556709e-07, 0, 5, 0, -8.742276e-08, 0, -7.5, -7.999999, 0, -1.639177e-07)
+
+[node name="Wall5" parent="Environment" unique_id=796927514 instance=ExtResource("3_isvj2")]
+transform = Transform3D(-4.371139e-08, 0, -60, 0, 5, 0, 1, 0, -2.6226833e-06, -1.3113416e-06, 0, 30)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=857993904]
+transform = Transform3D(1, 0, 0, 0, 0.107381165, 0.99421793, 0, -0.99421793, 0.107381165, 0, 0, 0)
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=920439597]
+environment = SubResource("Environment_oiqhs")
+
+[node name="CheeseManager" type="Node3D" parent="." unique_id=495728618]
+script = ExtResource("5_uu0ng")
+cheese = ExtResource("6_gn78r")
+
+[node name="Cheese" parent="." unique_id=735505740 instance=ExtResource("6_gn78r")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.13000774, 10.536357)

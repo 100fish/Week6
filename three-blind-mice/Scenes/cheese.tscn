@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://btyynsdo4lk2k"]
+
+[ext_resource type="Material" uid="uid://dpa8v7mky26j5" path="res://Materials/Cheese.tres" id="1_oaiwv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lmru3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oiqhs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oiqhs"]
+radius = 4.0
+
+[node name="Cheese" type="Node3D" unique_id=735505740]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=431996607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2026331013]
+mesh = SubResource("BoxMesh_lmru3")
+surface_material_override/0 = ExtResource("1_oaiwv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=114632231]
+shape = SubResource("BoxShape3D_oiqhs")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1785458485]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=223522074]
+shape = SubResource("SphereShape3D_oiqhs")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://txjinsi3n3ce"
-path="res://.godot/imported/Low.png-ee597d06267d1d447b5603d95bb4e897.ctex"
+uid="uid://cxmsywaaa75id"
+path="res://.godot/imported/icon.png-cbcf70a46f50cfe63a38fb28344b91a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Low.png"
-dest_files=["res://.godot/imported/Low.png-ee597d06267d1d447b5603d95bb4e897.ctex"]
+source_file="res://addons/multi_mouse/icon.png"
+dest_files=["res://.godot/imported/icon.png-cbcf70a46f50cfe63a38fb28344b91a3.ctex"]
 
 [params]
 
