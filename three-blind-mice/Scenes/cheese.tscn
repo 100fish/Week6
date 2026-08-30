@@ -37,4 +37,5 @@ shape = SubResource("SphereShape3D_oiqhs")
 stream = ExtResource("2_46kgj")
 volume_db = 20.0
 unit_size = 1.0
+pitch_scale = 4.0
 max_distance = 50.0

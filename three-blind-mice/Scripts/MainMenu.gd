@@ -11,7 +11,6 @@ func load_main_menu():
 	quit.connect('pressed', MenuManager._on_quit_pressed)
 
 func _on_start_game_pressed_mainMenu() -> void:
-	
 	pass
 
 func _on_new_game_pressed_mainMenu() -> void:
