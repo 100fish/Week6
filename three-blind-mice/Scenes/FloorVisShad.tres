@@ -1,0 +1,50 @@
+[gd_resource type="VisualShader" format=3 uid="uid://7fqmqfsmhwnx"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ggfsx"]
+output_port_for_preview = 0
+constant = Color(0.31697008, 0.118269525, 0.024385083, 1)
+
+[sub_resource type="Gradient" id="Gradient_le23p"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cwxsk"]
+noise_type = 0
+seed = 9
+frequency = 0.0018
+offset = Vector3(-300, 0, 0)
+fractal_type = 2
+fractal_octaves = 10
+fractal_lacunarity = 2.595
+fractal_gain = 1.265
+fractal_weighted_strength = 0.33
+fractal_ping_pong_strength = 2.27
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_jdgt3"]
+width = 500
+height = 500
+depth = 10
+noise = SubResource("FastNoiseLite_cwxsk")
+color_ramp = SubResource("Gradient_le23p")
+
+[sub_resource type="VisualShaderNodeTexture3D" id="VisualShaderNodeTexture3D_2dx2g"]
+texture = SubResource("NoiseTexture3D_jdgt3")
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_jdgt3"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_cwxsk"]
+expanded_output_ports = [0]
+function = 3
+
+[resource]
+nodes/vertex/0/position = Vector2(700, 100)
+nodes/fragment/0/position = Vector2(440, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_ggfsx")
+nodes/fragment/2/position = Vector2(-440, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture3D_2dx2g")
+nodes/fragment/3/position = Vector2(-440, 480)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMultiplyAdd_jdgt3")
+nodes/fragment/5/position = Vector2(-160, 280)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorFunc_cwxsk")
+nodes/fragment/6/position = Vector2(140, 160)
+nodes/fragment/connections = PackedInt32Array(3, 0, 5, 1, 2, 0, 5, 0, 5, 0, 6, 0, 6, 0, 0, 0, 3, 0, 0, 8)

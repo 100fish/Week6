@@ -79,6 +79,8 @@ func _on_game_end():
 
 func _eat_cheese() -> void:
 	score += 1
+	$"../Player/Moo".pitch_scale = 15.0
+	$"../Player/Moo".play()
 	scoreLabel.text = "Score: " + str(int(score))
 	_move_cheese()
 

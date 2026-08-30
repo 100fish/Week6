@@ -120,10 +120,16 @@ func _rightFootInput() -> int:
 	
 	return rightInputNum
 
+func _middleInput() -> void:
+	if Input.is_action_just_pressed("CHOMP"):
+		if(player == null): return
+		player.get_child(2).play()
+		middleMouse = 1
+
 func _processInput() -> void:
 	
 	#region middleInput
-	
+	_middleInput()
 	if(middleMouse > 0):
 		if(cheeseObject.area_3d.has_overlapping_bodies()):
 			eat_cheese.emit()
