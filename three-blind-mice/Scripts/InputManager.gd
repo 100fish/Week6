@@ -20,6 +20,10 @@ var leftMouse = 0
 var rightMouse = 0
 var middleMouse = 0
 
+var leftDevice = 1
+var rightDevice = 2
+var middleDevice = 3
+
 var leftInputStorage: Array[int] = []
 var rightInputStorage: Array[int] = []
 
@@ -77,13 +81,13 @@ func _process(_delta: float) -> void:
 func _mouseInputSorter(event: InputEventMouseButton) -> void:
 	print(event.device)
 	match event.device:
-		15: # LEFT INPUT
+		leftDevice: # LEFT INPUT
 			if (event.button_index == 4): leftMouse = 1
 			if (event.button_index == 5): leftMouse = -1
-		1: # RIGHT INPUT
+		rightDevice: # RIGHT INPUT
 			if (event.button_index == 4): rightMouse = 1
 			if (event.button_index == 5): rightMouse = -1
-		2: # CENTRE INPUT
+		middleDevice: # CENTRE INPUT
 			if (event.button_index == 1): middleMouse = 1
 			if (event.button_index == 2): middleMouse = 1
 			pass
