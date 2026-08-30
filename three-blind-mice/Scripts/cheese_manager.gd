@@ -23,6 +23,12 @@ var gameplay: bool = false
 
 @onready var scores: Label = $CheeseUI/Scoreboard/MarginContainer/InnerBackground/InnerContainer/Scores
 
+@onready var config: Control = $CheeseUI/Config
+
+@onready var configEnter: Button = $CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer/ButtonContainer3/Button
+@onready var configReturn: Button = $CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer/ButtonContainer2/Return
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	InputManager.eat_cheese.connect(_eat_cheese)
@@ -30,8 +36,11 @@ func _ready() -> void:
 	
 	start.connect('pressed', _on_start_pressed)
 	menuStart.connect('pressed', _on_menu_start_pressed)
+	configEnter.connect('pressed', _on_config_pressed)
+	configReturn.connect('pressed', _on_config_return_pressed)
 	
 	flingUI(startPanel)
+	flingUI(config)
 	
 	pass 
 
@@ -42,6 +51,12 @@ func flingUI(UI: Control):
 func returnUI(UI: Control):
 	UI.position.x = 0
 	UI.position.y = 0
+
+func _on_config_return_pressed():
+	flingUI(config)
+
+func _on_config_pressed():
+	returnUI(config)
 
 func _on_menu_start_pressed():
 	flingUI(menu)

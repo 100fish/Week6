@@ -31,7 +31,7 @@ var leftMouseInputEvent: InputEventMouseButton
 var rightMouseInputEvent: InputEventMouseButton
 var middleMouseInputEvent: InputEventMouseButton
 
-var enabled: bool = false
+var enabled: bool = true
 var timer: Node
 var cheeseObject: Node3D
 var cheese: AudioStreamPlayer3D
@@ -47,6 +47,11 @@ func _inputClear() -> void:
 		rightInputStorage.remove_at(0)
 
 func _process(_delta: float) -> void:
+	#print("devices")
+	#print(leftDevice)
+	#print(rightDevice)
+	#print(middleDevice)
+	
 	if (!enabled and has_node("../Room1/Player")):
 		#update scene
 		enabled = true
@@ -82,12 +87,15 @@ func _mouseInputSorter(event: InputEventMouseButton) -> void:
 	print(event.device)
 	match event.device:
 		leftDevice: # LEFT INPUT
+			print("inside left device and it is: " + str(leftDevice))
 			if (event.button_index == 4): leftMouse = 1
 			if (event.button_index == 5): leftMouse = -1
 		rightDevice: # RIGHT INPUT
+			print("inside right device and it is: " + str(rightDevice))
 			if (event.button_index == 4): rightMouse = 1
 			if (event.button_index == 5): rightMouse = -1
 		middleDevice: # CENTRE INPUT
+			print("inside middle device and it is: " + str(middleDevice))
 			if (event.button_index == 1): middleMouse = 1
 			if (event.button_index == 2): middleMouse = 1
 			pass

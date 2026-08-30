@@ -1,5 +1,7 @@
 extends Node2D
 
+var deviceStatus: String = "none yet"
+
 @onready var label := Label.new()
 
 var _multi_mouse: Node = null
@@ -68,12 +70,12 @@ func _on_button(event: InputEventMouseButton) -> void:
 			InputManager.leftMouseInputEvent = event
 		InputManager.rightDevice:
 			InputManager.rightMouseInputEvent = event
-		InputManager.centreDevice:
+		InputManager.middleDevice:
 			InputManager.middleMouseInputEvent = event
 		_:
 			pass
 	
-	#label.text = "Button %s. from %s (pressed=%s)" % [event.button_index, event.device, event.pressed]
+	deviceStatus = "Last input was from MouseID: " + str(event.device)
 
 func _on_device_connected(device_id: int, info: Dictionary) -> void:
 	print("Device connected", device_id, info)

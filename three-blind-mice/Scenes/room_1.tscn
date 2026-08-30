@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://buwbtx6n30yys" path="res://Scripts/cheese_manager.gd" id="5_uu0ng"]
 [ext_resource type="PackedScene" uid="uid://btyynsdo4lk2k" path="res://Scenes/cheese.tscn" id="6_gn78r"]
 [ext_resource type="Script" uid="uid://c63rwtk6x04gq" path="res://Scenes/scores.gd" id="6_vxiu1"]
+[ext_resource type="Script" uid="uid://bw4tipaygsbor" path="res://Scenes/config.gd" id="7_8ybfm"]
 [ext_resource type="Script" uid="uid://d1dedjuwy82io" path="res://Scenes/visualise.gd" id="7_jwkej"]
 [ext_resource type="AudioStream" uid="uid://dlqw4fsunb5qx" path="res://Audio/スピラーレ.mp3" id="8_vxiu1"]
 
@@ -386,6 +387,107 @@ text = "Quit
 [node name="Control2" type="Control" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=1102337989]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Config" type="Control" parent="CheeseManager/CheeseUI" unique_id=357746644]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_8ybfm")
+
+[node name="Sprite2D" type="Sprite2D" parent="CheeseManager/CheeseUI/Config" unique_id=43314792]
+position = Vector2(977.5, 534)
+scale = Vector2(31.015625, 17.3125)
+texture = SubResource("GradientTexture2D_vxiu1")
+
+[node name="MarginContainer" type="MarginContainer" parent="CheeseManager/CheeseUI/Config" unique_id=1753320532]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="InnerBackground" type="Panel" parent="CheeseManager/CheeseUI/Config/MarginContainer" unique_id=854664884]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwkej")
+
+[node name="InnerContainer" type="VBoxContainer" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground" unique_id=1469861844]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfigInfo" type="Label" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer" unique_id=925359590]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_outline_color = Color(0.7647059, 0.627451, 0.7921569, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 30
+text = "
+The MouseID number is the device ID of the last mouse that had input.
+
+Read the ID number for each mouse, and then write it in the corresponding text box.
+
+If you don't have multimouse installed, this system wont work, and you'll have to use the alternative controls listed in the README instead,"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DeviceInfo" type="Label" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer" unique_id=133558782]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.37358776, 0.0011778558, 0.92551607, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 48
+text = "
+Last Input was from MouseID: "
+
+[node name="Control" type="Control" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer" unique_id=36089565]
+custom_minimum_size = Vector2(0, 48.78)
+layout_mode = 2
+
+[node name="LeftMouse" type="TextEdit" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer" unique_id=1835866682]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter the ID of the mouse you will use with your left foot"
+
+[node name="RightMouse" type="TextEdit" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer" unique_id=460292277]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter the ID of the mouse you will use with your right foot"
+
+[node name="MiddleMouse" type="TextEdit" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer" unique_id=1362088318]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter the ID of the mouse you will hold in your hands"
+
+[node name="ButtonContainer2" type="MarginContainer" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer" unique_id=1132868624]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Return" type="Button" parent="CheeseManager/CheeseUI/Config/MarginContainer/InnerBackground/InnerContainer/ButtonContainer2" unique_id=1503139442]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9137255, 0.7058824, 0.9019608, 1)
+theme_override_colors/font_outline_color = Color(0.83137256, 0.49411765, 0.78431374, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 40
+text = "Quit
+"
 
 [node name="Cheese" parent="." unique_id=735505740 instance=ExtResource("6_gn78r")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.13000774, 10.536357)
