@@ -38,6 +38,8 @@ enabled=PackedStringArray("res://addons/multi_mouse/plugin.cfg")
 [global_group]
 
 Player=""
+Cheese=""
+Wall=""
 
 [gui]
 

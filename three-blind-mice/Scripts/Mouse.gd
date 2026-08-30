@@ -67,7 +67,7 @@ func _on_button(event: InputEventMouseButton) -> void:
 			InputManager.leftMouseInputEvent = event
 		1:
 			InputManager.rightMouseInputEvent = event
-		10:
+		2:
 			InputManager.middleMouseInputEvent = event
 		_:
 			pass

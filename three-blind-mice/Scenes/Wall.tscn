@@ -8,14 +8,14 @@
 [sub_resource type="BoxMesh" id="BoxMesh_oiqhs"]
 material = ExtResource("1_toqlf")
 
-[node name="Wall" type="Node3D" unique_id=2084470805]
+[node name="Wall" type="Node3D" unique_id=2084470805 groups=["Wall"]]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2024146413]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2024146413 groups=["Wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=488918215]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=488918215 groups=["Wall"]]
 shape = SubResource("BoxShape3D_oiqhs")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1896052646]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1896052646 groups=["Wall"]]
 material_override = ExtResource("1_8r34y")
 mesh = SubResource("BoxMesh_oiqhs")

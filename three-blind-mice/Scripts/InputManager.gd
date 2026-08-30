@@ -4,8 +4,10 @@ extends Node
 
 @onready var player: Node3D
 
-var rotationSpeed: float = 0.2
-var movementSpeed: float = 1.0
+signal eat_cheese
+
+var rotationSpeed: float = 1
+var movementSpeed: float = 2.0
 var speedyBoost: float = 1.5
 
 var backwards = false
@@ -27,6 +29,7 @@ var middleMouseInputEvent: InputEventMouseButton
 
 var enabled: bool = false
 var timer: Node
+var cheeseObject: Node3D
 var cheese: AudioStreamPlayer3D
 var ears: Node
 
@@ -50,23 +53,10 @@ func _process(_delta: float) -> void:
 		ears.make_current()
 		cheese = $"../Room1/Cheese/CheeseSound"
 		cheese.play()
+		cheeseObject = $"../Room1/Cheese"
 		
 		print(InputManager.player)
 	
-	if(enabled):
-		if (leftMouseInputEvent != null): 
-			_mouseInputSorter(leftMouseInputEvent)
-			leftMouseInputEvent = null
-		if (rightMouseInputEvent != null): 
-			_mouseInputSorter(rightMouseInputEvent)
-			rightMouseInputEvent = null
-		if (middleMouseInputEvent != null): 
-			_mouseInputSorter(middleMouseInputEvent)
-			middleMouseInputEvent = null
-		
-		_processInput()
-		_movement()
-		_resetVars()
 	if(enabled):
 		if (leftMouseInputEvent != null): 
 			_mouseInputSorter(leftMouseInputEvent)
@@ -85,8 +75,7 @@ func _process(_delta: float) -> void:
 
 #region Movement/Input
 func _mouseInputSorter(event: InputEventMouseButton) -> void:
-
-	#print(str(event.button_index) + " || " + str(event.device))
+	print(event.device)
 	match event.device:
 		15: # LEFT INPUT
 			if (event.button_index == 4): leftMouse = 1
@@ -94,9 +83,9 @@ func _mouseInputSorter(event: InputEventMouseButton) -> void:
 		1: # RIGHT INPUT
 			if (event.button_index == 4): rightMouse = 1
 			if (event.button_index == 5): rightMouse = -1
-		10: # CENTRE INPUT
-			if (event.button_index == 4): rightMouse = 1
-			if (event.button_index == 5): rightMouse = -1
+		2: # CENTRE INPUT
+			if (event.button_index == 1): middleMouse = 1
+			if (event.button_index == 2): middleMouse = 1
 			pass
 		_: # IGNORE OTHER MICE
 			pass
@@ -128,6 +117,16 @@ func _rightFootInput() -> int:
 	return rightInputNum
 
 func _processInput() -> void:
+	
+	#region middleInput
+	
+	if(middleMouse > 0):
+		if(cheeseObject.area_3d.has_overlapping_bodies()):
+			eat_cheese.emit()
+			pass
+	
+	#endregion
+	
 	#hardcoded to prefer mouse input
 	if(_leftFootInput() != 0): 
 		leftInputStorage.append(_leftFootInput())
@@ -152,7 +151,7 @@ func _processInput() -> void:
 	#print(leftInputStorage)
 	#print(rightInputStorage)
 	
-	if(leftInput != 0 and rightInput != 0): print(leftInput, " ", rightInput)
+	#(leftInput != 0 and rightInput != 0):#print(leftInput, " ", rightInput)
 	
 	var leftSign = signi(leftInput)
 	var rightSign = signi(rightInput)
