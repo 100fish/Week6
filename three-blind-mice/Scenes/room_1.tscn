@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cq152246qduu3" path="res://Scenes/Floor.tscn" id="4_uu0ng"]
 [ext_resource type="Script" uid="uid://buwbtx6n30yys" path="res://Scripts/cheese_manager.gd" id="5_uu0ng"]
 [ext_resource type="PackedScene" uid="uid://btyynsdo4lk2k" path="res://Scenes/cheese.tscn" id="6_gn78r"]
+[ext_resource type="Script" uid="uid://d1dedjuwy82io" path="res://Scenes/visualise.gd" id="7_jwkej"]
 
 [sub_resource type="Environment" id="Environment_oiqhs"]
 background_color = Color(0.58876, 0.5941122, 0.71358556, 1)
@@ -79,3 +80,6 @@ cheese = ExtResource("6_gn78r")
 
 [node name="Cheese" parent="." unique_id=735505740 instance=ExtResource("6_gn78r")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.13000774, 10.536357)
+
+[node name="Visualise" type="Node2D" parent="." unique_id=179955518]
+script = ExtResource("7_jwkej")

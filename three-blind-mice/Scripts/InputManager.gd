@@ -4,9 +4,9 @@ extends Node
 
 @onready var player: Node3D
 
-var rotationSpeed: float = 0.2
-var movementSpeed: float = 1.0
-var speedyBoost: float = 1.5
+var rotationSpeed: float = 1.0
+var movementSpeed: float = 2.0
+var speedyBoost: float = 3.0
 
 var backwards = false
 var forwards = false
@@ -53,20 +53,6 @@ func _process(_delta: float) -> void:
 		
 		print(InputManager.player)
 	
-	if(enabled):
-		if (leftMouseInputEvent != null): 
-			_mouseInputSorter(leftMouseInputEvent)
-			leftMouseInputEvent = null
-		if (rightMouseInputEvent != null): 
-			_mouseInputSorter(rightMouseInputEvent)
-			rightMouseInputEvent = null
-		if (middleMouseInputEvent != null): 
-			_mouseInputSorter(middleMouseInputEvent)
-			middleMouseInputEvent = null
-		
-		_processInput()
-		_movement()
-		_resetVars()
 	if(enabled):
 		if (leftMouseInputEvent != null): 
 			_mouseInputSorter(leftMouseInputEvent)
