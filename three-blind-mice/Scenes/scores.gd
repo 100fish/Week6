@@ -27,7 +27,7 @@ func add_new_score(newScore: int):
 	for i in currentScores:
 		i = int(i)
 	
-	currentScores.append(newScore)
+	#currentScores.append(newScore)
 	
 	#sort names by scores
 	currentNames.sort_custom(func(a, b):

@@ -17,8 +17,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	device_info.text = mouse_manager.deviceStatus
 	
-	InputManager.leftDevice = left_mouse.text
-	InputManager.rightDevice = right_mouse.text
-	InputManager.middleDevice = middle_mouse.text
+	InputManager.leftDevice = int(left_mouse.text)
+	InputManager.rightDevice = int(right_mouse.text)
+	InputManager.middleDevice = int(middle_mouse.text)
 	
 	pass

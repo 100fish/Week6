@@ -89,7 +89,7 @@ func _process(delta: float) -> void:
 
 func _on_game_end():
 	gameplay = false
-	scores.add_new_score(score)
+	#scores.add_new_score(score)
 	get_tree().reload_current_scene() 
 
 func _eat_cheese() -> void:
