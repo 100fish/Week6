@@ -152,7 +152,7 @@ func _processInput() -> void:
 	#print(leftInputStorage)
 	#print(rightInputStorage)
 	
-	if(leftInput != 0 and rightInput != 0): print(leftInput, " ", rightInput)
+	#if(leftInput != 0 and rightInput != 0): print(leftInput, " ", rightInput)
 	
 	var leftSign = signi(leftInput)
 	var rightSign = signi(rightInput)

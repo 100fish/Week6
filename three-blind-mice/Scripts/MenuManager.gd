@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 	# SABIAN ADJUSTED THIS CODE
-func _move_to_new_scene(SceneID, OldScene) -> void:
+func _move_to_new_scene(SceneID, _OldScene) -> void:
 	#game = self.get_parent()
 	
 	#create instance
@@ -27,7 +27,6 @@ func _move_to_new_scene(SceneID, OldScene) -> void:
 	#attach new scene
 	get_tree().root.add_child(world_scene)
 	get_tree().current_scene = world_scene
-	
 	
 
 func _on_start_game_pressed() -> void:
