@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @onready var player: Node3D = $"../Player"
 var screenPosition: Vector2
 

@@ -14,9 +14,14 @@ var gameplay: bool = false
 @export var leftCorner: Node3D
 @export var rightCorner: Node3D
 
+@onready var menuStart: Button = $CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer/ButtonContainer/Button
+
 @onready var start: Button = $CheeseUI/MarginContainer/Start/MarginContainer/StartingContainer/MarginContainer/Start
 @onready var startPanel: Control = $CheeseUI/MarginContainer/Start
-@onready var endPanel: Control = $CheeseUI/MarginContainer/End
+@onready var scoreboard: Control = $CheeseUI/Scoreboard
+@onready var menu: Control = $CheeseUI/Menu
+
+@onready var scores: Label = $CheeseUI/Scoreboard/MarginContainer/InnerBackground/InnerContainer/Scores
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,14 +29,29 @@ func _ready() -> void:
 	_move_cheese()
 	
 	start.connect('pressed', _on_start_pressed)
+	menuStart.connect('pressed', _on_menu_start_pressed)
 	
-	endPanel.position.x = 2000
-	endPanel.position.y = 2000
+	flingUI(startPanel)
+	
 	pass 
 
+func flingUI(UI: Control):
+	UI.position.x = 2000
+	UI.position.y = 2000
+
+func returnUI(UI: Control):
+	UI.position.x = 0
+	UI.position.y = 0
+
+func _on_menu_start_pressed():
+	flingUI(menu)
+	flingUI(scoreboard)
+	
+	returnUI(startPanel)
+	
+
 func _on_start_pressed():
-	startPanel.position.y = 2000
-	startPanel.position.x = 2000
+	flingUI(startPanel)
 	
 	playerName = playerNameBox.text
 	
@@ -54,13 +74,12 @@ func _process(delta: float) -> void:
 
 func _on_game_end():
 	gameplay = false
-	endPanel.position.x = 0
-	endPanel.position.y = 0
+	scores.add_new_score(score)
+	get_tree().reload_current_scene() 
 
 func _eat_cheese() -> void:
 	score += 1
 	scoreLabel.text = "Score: " + str(int(score))
-	
 	_move_cheese()
 
 func _move_cheese() -> void:

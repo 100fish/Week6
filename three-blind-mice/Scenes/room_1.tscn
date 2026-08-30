@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cq152246qduu3" path="res://Scenes/Floor.tscn" id="4_uu0ng"]
 [ext_resource type="Script" uid="uid://buwbtx6n30yys" path="res://Scripts/cheese_manager.gd" id="5_uu0ng"]
 [ext_resource type="PackedScene" uid="uid://btyynsdo4lk2k" path="res://Scenes/cheese.tscn" id="6_gn78r"]
+[ext_resource type="Script" uid="uid://c63rwtk6x04gq" path="res://Scenes/scores.gd" id="6_vxiu1"]
 [ext_resource type="Script" uid="uid://d1dedjuwy82io" path="res://Scenes/visualise.gd" id="7_jwkej"]
 
 [sub_resource type="Environment" id="Environment_oiqhs"]
@@ -27,6 +28,20 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="Gradient" id="Gradient_w371h"]
+offsets = PackedFloat32Array(0.05421687, 0.9096386, 1)
+colors = PackedColorArray(0.73333335, 0.7529412, 0.5764706, 1, 0.8215923, 0.42830142, 0.6843374, 1, 0.81960785, 0.4392157, 0.68235296, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vxiu1"]
+gradient = SubResource("Gradient_w371h")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwkej"]
+bg_color = Color(0.7411765, 0.4745098, 0.85882354, 0.627451)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
 [node name="Room1" type="Node3D" unique_id=987349417]
 
@@ -115,10 +130,6 @@ theme_override_colors/font_outline_color = Color(0.8862745, 0.53333336, 0.670588
 theme_override_constants/outline_size = 17
 theme_override_font_sizes/font_size = 44
 text = "Time:"
-
-[node name="End" type="Control" parent="CheeseManager/CheeseUI/MarginContainer" unique_id=121630091]
-layout_mode = 2
-mouse_filter = 1
 
 [node name="Start" type="Control" parent="CheeseManager/CheeseUI/MarginContainer" unique_id=1120008978]
 layout_mode = 2
@@ -213,6 +224,167 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_font_sizes/font_size = 259
 text = "START"
+
+[node name="Scoreboard" type="Control" parent="CheeseManager/CheeseUI" unique_id=1271641007]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CheeseManager/CheeseUI/Scoreboard" unique_id=642568691]
+position = Vector2(977.5, 534)
+scale = Vector2(31.015625, 17.3125)
+texture = SubResource("GradientTexture2D_vxiu1")
+
+[node name="MarginContainer" type="MarginContainer" parent="CheeseManager/CheeseUI/Scoreboard" unique_id=1865964396]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.644
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="InnerBackground" type="Panel" parent="CheeseManager/CheeseUI/Scoreboard/MarginContainer" unique_id=1176549877]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwkej")
+
+[node name="InnerContainer" type="VBoxContainer" parent="CheeseManager/CheeseUI/Scoreboard/MarginContainer/InnerBackground" unique_id=995295866]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreTitle" type="Label" parent="CheeseManager/CheeseUI/Scoreboard/MarginContainer/InnerBackground/InnerContainer" unique_id=1913212688]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99607843, 0.7647059, 1, 1)
+theme_override_colors/font_outline_color = Color(0.98599607, 0.49266368, 0.6615549, 1)
+theme_override_constants/outline_size = 26
+theme_override_font_sizes/font_size = 98
+text = "Scoreboard"
+horizontal_alignment = 1
+
+[node name="Scores" type="Label" parent="CheeseManager/CheeseUI/Scoreboard/MarginContainer/InnerBackground/InnerContainer" unique_id=514272298]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4509804, 0.3882353, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 59
+text = "SCORE 1
+SCORE 2
+SCORE 3
+SCORE 4
+SCORE 5
+SCORE 6
+SCORE 7
+SCORE 8
+SCORE 9
+SCORE 10"
+horizontal_alignment = 1
+script = ExtResource("6_vxiu1")
+
+[node name="Menu" type="Control" parent="CheeseManager/CheeseUI" unique_id=1076532983]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CheeseManager/CheeseUI/Menu" unique_id=1090112613]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.675
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="InnerBackground" type="Panel" parent="CheeseManager/CheeseUI/Menu/MarginContainer" unique_id=727760259]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwkej")
+
+[node name="InnerContainer" type="VBoxContainer" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground" unique_id=354598258]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control3" type="Control" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=205164719]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer" type="MarginContainer" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=451456135]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Button" type="Button" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer/ButtonContainer" unique_id=2105102998]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9137255, 0.7058824, 0.9019608, 1)
+theme_override_colors/font_outline_color = Color(0.83137256, 0.49411765, 0.78431374, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 40
+text = "New Game
+"
+
+[node name="ButtonContainer3" type="MarginContainer" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=2053266734]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Button" type="Button" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer/ButtonContainer3" unique_id=1466797689]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9137255, 0.7058824, 0.9019608, 1)
+theme_override_colors/font_outline_color = Color(0.83137256, 0.49411765, 0.78431374, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 40
+text = "Mouse Config"
+
+[node name="Control" type="Control" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=415944693]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer2" type="MarginContainer" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=820885132]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Button" type="Button" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer/ButtonContainer2" unique_id=1680980459]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9137255, 0.7058824, 0.9019608, 1)
+theme_override_colors/font_outline_color = Color(0.83137256, 0.49411765, 0.78431374, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 40
+text = "Quit
+"
+
+[node name="Control2" type="Control" parent="CheeseManager/CheeseUI/Menu/MarginContainer/InnerBackground/InnerContainer" unique_id=1102337989]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Cheese" parent="." unique_id=735505740 instance=ExtResource("6_gn78r")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.13000774, 10.536357)
