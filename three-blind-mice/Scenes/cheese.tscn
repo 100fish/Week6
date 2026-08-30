@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://btyynsdo4lk2k"]
 
 [ext_resource type="Material" uid="uid://dpa8v7mky26j5" path="res://Materials/Cheese.tres" id="1_oaiwv"]
+[ext_resource type="AudioStream" uid="uid://bgqcvqdn7rtrf" path="res://Audio/freesound_community-harmonic-hum-100812.mp3" id="2_46kgj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lmru3"]
 
@@ -26,3 +27,9 @@ shape = SubResource("BoxShape3D_oiqhs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=223522074]
 shape = SubResource("SphereShape3D_oiqhs")
+
+[node name="CheeseSound" type="AudioStreamPlayer3D" parent="." unique_id=512889640]
+stream = ExtResource("2_46kgj")
+volume_db = 20.0
+unit_size = 1.0
+max_distance = 50.0

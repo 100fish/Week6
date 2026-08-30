@@ -4,7 +4,7 @@ extends Node
 
 @onready var player: Node3D
 
-var rotationSpeed: float = 1.0
+var rotationSpeed: float = 0.2
 var movementSpeed: float = 1.0
 var speedyBoost: float = 1.5
 
@@ -18,16 +18,41 @@ var leftMouse = 0
 var rightMouse = 0
 var middleMouse = 0
 
+var leftInputStorage: Array[int] = []
+var rightInputStorage: Array[int] = []
+
 var leftMouseInputEvent: InputEventMouseButton
 var rightMouseInputEvent: InputEventMouseButton
 var middleMouseInputEvent: InputEventMouseButton
 
 var enabled: bool = false
+var timer: Node
+var cheese: AudioStreamPlayer3D
+var ears: Node
 
 #endregion
 
 #region Update
+func _inputClear() -> void:
+	if(leftInputStorage.size()>0):
+		leftInputStorage.remove_at(0)
+	if(rightInputStorage.size()>0):
+		rightInputStorage.remove_at(0)
+
 func _process(_delta: float) -> void:
+	if (!enabled and has_node("../Room1/Player")):
+		#update scene
+		enabled = true
+		player = $"../Room1/Player"
+		timer = $"../Room1/Player/Timer"
+		timer.connect("timeout", _inputClear)
+		ears = $"../Room1/Player/Body/Ears"
+		ears.make_current()
+		cheese = $"../Room1/Cheese/CheeseSound"
+		cheese.play()
+		
+		print(InputManager.player)
+	
 	if(enabled):
 		if (leftMouseInputEvent != null): 
 			_mouseInputSorter(leftMouseInputEvent)
@@ -42,18 +67,31 @@ func _process(_delta: float) -> void:
 		_processInput()
 		_movement()
 		_resetVars()
-	
+	if(enabled):
+		if (leftMouseInputEvent != null): 
+			_mouseInputSorter(leftMouseInputEvent)
+			leftMouseInputEvent = null
+		if (rightMouseInputEvent != null): 
+			_mouseInputSorter(rightMouseInputEvent)
+			rightMouseInputEvent = null
+		if (middleMouseInputEvent != null): 
+			_mouseInputSorter(middleMouseInputEvent)
+			middleMouseInputEvent = null
+		
+		_processInput()
+		_movement()
+		_resetVars()
 #endregion
 
 #region Movement/Input
 func _mouseInputSorter(event: InputEventMouseButton) -> void:
 
-	print(str(event.button_index) + " || " + str(event.device))
+	#print(str(event.button_index) + " || " + str(event.device))
 	match event.device:
-		2: # LEFT INPUT
+		15: # LEFT INPUT
 			if (event.button_index == 4): leftMouse = 1
 			if (event.button_index == 5): leftMouse = -1
-		3: # RIGHT INPUT
+		1: # RIGHT INPUT
 			if (event.button_index == 4): rightMouse = 1
 			if (event.button_index == 5): rightMouse = -1
 		10: # CENTRE INPUT
@@ -66,9 +104,9 @@ func _mouseInputSorter(event: InputEventMouseButton) -> void:
 func _leftFootInput() -> int:
 	var leftInputNum = 0
 	# REPLACE HERE WITH MOUSE INPUTS
-	if Input.is_action_pressed("LeftFootForward"):
+	if Input.is_action_just_pressed("LeftFootForward"):
 		leftInputNum +=1
-	if Input.is_action_pressed("LeftFootBack"):
+	if Input.is_action_just_pressed("LeftFootBack"):
 		leftInputNum -=1
 	#
 	
@@ -79,9 +117,9 @@ func _rightFootInput() -> int:
 	var rightInputNum = 0
 	
 	# REPLACE HERE WITH MOUSE INPUTS
-	if Input.is_action_pressed("RightFootForward"):
+	if Input.is_action_just_pressed("RightFootForward"):
 		rightInputNum += 1
-	if Input.is_action_pressed("RightFootBack"):
+	if Input.is_action_just_pressed("RightFootBack"):
 		rightInputNum -= 1
 	#
 	
@@ -90,12 +128,35 @@ func _rightFootInput() -> int:
 	return rightInputNum
 
 func _processInput() -> void:
-	var leftInput = leftMouse #_leftFootInput()
-	var rightInput = rightMouse #_rightFootInput()
-	if(_leftFootInput() != 0): leftInput = _leftFootInput()
-	if(_rightFootInput() != 0): rightInput = _rightFootInput()
+	#hardcoded to prefer mouse input
+	if(_leftFootInput() != 0): 
+		leftInputStorage.append(_leftFootInput())
+	if(leftMouse != 0):
+		leftInputStorage.append(leftMouse)
+	if(_rightFootInput() != 0 or rightMouse != 0): 
+		rightInputStorage.append(_rightFootInput())
+	if(rightMouse != 0):
+		rightInputStorage.append(rightMouse)
+	
+	if(_leftFootInput() != 0 or leftMouse != 0 or _rightFootInput() != 0 or rightMouse != 0):
+		#FORWARDSSSSSS
+		forwards = true
+	
+	var leftInput 
+	var rightInput
+	
+	if(leftInputStorage.size()>0): leftInput = leftInputStorage[0]
+	else: leftInput = leftMouse
+	if(rightInputStorage.size()>0): rightInput = rightInputStorage[0]
+	else: rightInput = rightMouse
+	#print(leftInputStorage)
+	#print(rightInputStorage)
+	
+	if(leftInput != 0 and rightInput != 0): print(leftInput, " ", rightInput)
+	
 	var leftSign = signi(leftInput)
 	var rightSign = signi(rightInput)
+	
 	
 	if leftInput == rightInput:
 		match leftSign:
@@ -127,11 +188,15 @@ func _processInput() -> void:
 					turnRight = true
 					speedyTurn = true
 	
+	
+	
 	#  --
 	#  Possible combinations:
 	#  ||(-1,0) (-1,1)|| - ||(0,1) (0,-1)|| - ||(1,0) (1,-1)||
 	#  --
+
 func _movement() -> void:
+	if(player == null): return
 	var playerBody: Node = player.get_child(0)
 	var velocity = Vector3(0,0,0)
 	var currentRotation = playerBody.rotation_degrees.y

@@ -7,7 +7,7 @@ func _ready():
 	load_main_menu()
 
 func load_main_menu():
-	new_game.connect('pressed', _on_start_game_pressed_mainMenu)
+	new_game.connect('pressed', MenuManager._on_new_game_pressed)
 	quit.connect('pressed', MenuManager._on_quit_pressed)
 
 func _on_start_game_pressed_mainMenu() -> void:
