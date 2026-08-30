@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ThreeBlindMice"
-run/main_scene="uid://bxjdtero2iebk"
+run/main_scene="uid://i03jpbubee2x"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=60
 
