@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bw13tiuqrlwjg" path="res://Sprites/mousepic.png" id="1_6x8lg"]
 [ext_resource type="Script" uid="uid://b5788ak0858hd" path="res://Scripts/AudioFacing.gd" id="1_nq45g"]
+[ext_resource type="AudioStream" uid="uid://chwxeui4t4uw6" path="res://Audio/cryptologymedia-chomp-155392.mp3" id="3_byim1"]
+[ext_resource type="AudioStream" uid="uid://bdbk60jk20g16" path="res://Audio/magiazzz-cow-mooing-549257.mp3" id="4_winbg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2isgr"]
 size = Vector3(1, 1, 2.2833252)
@@ -25,3 +27,10 @@ texture = ExtResource("1_6x8lg")
 [node name="Timer" type="Timer" parent="." unique_id=1719453595]
 wait_time = 0.033
 autostart = true
+
+[node name="Chomp" type="AudioStreamPlayer" parent="." unique_id=317542511]
+stream = ExtResource("3_byim1")
+
+[node name="Moo" type="AudioStreamPlayer" parent="." unique_id=116227112]
+stream = ExtResource("4_winbg")
+pitch_scale = 15.05

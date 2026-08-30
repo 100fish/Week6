@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://buwbtx6n30yys" path="res://Scripts/cheese_manager.gd" id="5_uu0ng"]
 [ext_resource type="PackedScene" uid="uid://btyynsdo4lk2k" path="res://Scenes/cheese.tscn" id="6_gn78r"]
 [ext_resource type="Script" uid="uid://d1dedjuwy82io" path="res://Scenes/visualise.gd" id="7_jwkej"]
+[ext_resource type="AudioStream" uid="uid://dlqw4fsunb5qx" path="res://Audio/スピラーレ.mp3" id="8_vxiu1"]
 
 [sub_resource type="Environment" id="Environment_oiqhs"]
 background_color = Color(0.58876, 0.5941122, 0.71358556, 1)
@@ -43,7 +44,7 @@ size = 62.16127
 [node name="Environment" type="Node3D" parent="." unique_id=566131419]
 
 [node name="Wall2" parent="Environment" unique_id=2084470805 instance=ExtResource("4_uu0ng")]
-transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, -0.9162688, 0)
+transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, 0, 0)
 
 [node name="Wall" parent="Environment" unique_id=1353909997 instance=ExtResource("3_isvj2")]
 transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 60, -30, 0, 0)
@@ -219,3 +220,8 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.13000774, 10.53635
 
 [node name="Visualise" type="Node2D" parent="." unique_id=179955518]
 script = ExtResource("7_jwkej")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=921387006]
+stream = ExtResource("8_vxiu1")
+volume_db = -40.0
+autoplay = true

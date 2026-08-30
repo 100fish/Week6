@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://btyynsdo4lk2k"]
 
-[ext_resource type="Material" uid="uid://dpa8v7mky26j5" path="res://Materials/Cheese.tres" id="1_oaiwv"]
 [ext_resource type="Script" uid="uid://bkod60qx2ogp6" path="res://Scenes/cheese.gd" id="1_oy54m"]
 [ext_resource type="AudioStream" uid="uid://bgqcvqdn7rtrf" path="res://Audio/freesound_community-harmonic-hum-100812.mp3" id="2_46kgj"]
+[ext_resource type="Shader" uid="uid://gfrgf65i8cl" path="res://Scenes/cheese.tres" id="2_oy54m"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_lmru3"]
+[sub_resource type="PrismMesh" id="PrismMesh_oy54m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxiu1"]
+render_priority = 0
+shader = ExtResource("2_oy54m")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oiqhs"]
+size = Vector3(2.8502808, 3.1269531, 2.9111328)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oiqhs"]
 radius = 2.5029652
@@ -19,11 +24,12 @@ script = ExtResource("1_oy54m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2026331013]
-mesh = SubResource("BoxMesh_lmru3")
-surface_material_override/0 = ExtResource("1_oaiwv")
+transform = Transform3D(-0.99596757, -2.0128849, 0.22821231, -0.079408705, -0.2153148, -2.2456772, 2.0242224, -0.99883544, 0.024189962, 0, 0, 0)
+mesh = SubResource("PrismMesh_oy54m")
+surface_material_override/0 = SubResource("ShaderMaterial_vxiu1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=114632231]
-visible = false
+transform = Transform3D(0.77207965, 0, 0.20950654, 0, 0.8, 0, -0.20950654, 0, 0.77207965, 0.44839454, 0.049275547, 0.32633427)
 shape = SubResource("BoxShape3D_oiqhs")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1785458485]
