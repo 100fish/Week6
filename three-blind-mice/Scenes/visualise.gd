@@ -17,7 +17,7 @@ func _draw() -> void:
 	var facingEnd = facingStart + player.directionFacing*100
 	var cheeseStart = screenPosition
 	var cheeseEnd = screenPosition - player.cheeseVector*10
-	draw_line(facingStart, facingEnd, Color.RED, 4.0)
+	#draw_line(facingStart, facingEnd, Color.RED, 4.0)
 	draw_circle(facingEnd, 6.0, Color.RED)
 	draw_line(cheeseStart, cheeseEnd, Color.BLUE, 4.0)
 	draw_circle(cheeseEnd, 6.0, Color.BLUE)
